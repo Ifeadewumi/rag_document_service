@@ -1,6 +1,10 @@
 from pydantic_settings import BaseSettings
 from functools import lru_cache
 from typing import Literal
+from dotenv import load_dotenv
+
+# Explicitly load the .env file
+load_dotenv()
 
 
 class Settings(BaseSettings):
@@ -9,8 +13,8 @@ class Settings(BaseSettings):
     
     # OpenRouter
     openrouter_api_key: str
-    embedding_model: str = "openai/text-embedding-3-small"
-    llm_model: str = "anthropic/claude-3.5-sonnet"
+    embedding_model: str = "sentence-transformers/all-minilm-l6-v2"
+    llm_model: str = "nousresearch/hermes-3-llama-3.1-405b"
     
     # Vector DB
     vector_db_type: Literal["chroma", "pinecone"] = "chroma"
