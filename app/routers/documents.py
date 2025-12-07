@@ -47,6 +47,12 @@ async def upload_document(
         file_content = await file.read()
         file_size = len(file_content)
         
+        if file_size > settings.max_upload_size_bytes:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"File too large. Maximum size allowed is {settings.max_upload_size_bytes / (1024*1024)}MB"
+            )
+        
         # Create document record
         doc_id = str(uuid.uuid4())
         document = Document(

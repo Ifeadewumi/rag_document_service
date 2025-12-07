@@ -26,6 +26,7 @@ class Settings(BaseSettings):
     # Chunking
     chunk_size: int = 500
     chunk_overlap: int = 50
+    max_upload_size_bytes: int = 5 * 1024 * 1024  # 5 MB
     
     # RAG
     top_k_results: int = 5
